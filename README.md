@@ -23,6 +23,27 @@
 
 ---
 
+## 🚀 安装为 Agent Skills（npx skills）
+
+Part I 的全部 Prompt 已打包为标准 Agent Skills（`skills/` 目录，每个子目录含 `SKILL.md`，带 `name` + `description` frontmatter），可通过 [Skills CLI](https://github.com/vercel-labs/skills)（`npx skills`）一键安装：
+
+```bash
+# 本地路径安装（当前仓库，全部 18 个 skills）
+npx skills add ./awesome-ai-research-writing
+
+# 推送 GitHub 后从仓库安装全部 skills
+npx skills add <your-username>/awesome-ai-research-writing
+
+# 只安装某一个 skill（如中译英 LaTeX）
+npx skills add <your-username>/awesome-ai-research-writing@zh2en-latex
+```
+
+安装后 skills 会进入 `.agents/skills/`（或 `.claude/skills/`），支持 Agent Skills 标准的工具（Cursor、Claude Code、pi、Codex 等）会自动发现。可用 `npx skills list` 查看已安装 skills。
+
+> 💡 本仓库位于 `.agents/skills/awesome-ai-research-writing/` 时，pi 等工具也会递归发现 `skills/*/SKILL.md`，无需安装即可直接使用。
+
+---
+
 ## 📑 目录 (Table of Contents)
 
 ### Part I: 写作 Prompt 集合
@@ -818,6 +839,8 @@ Highlight the core novelty. Ensure the connection logic makes sense."""
 > 💡 **使用说明**：Agent Skills 是一种可被 AI 助手（如 Claude、Cursor）加载的扩展能力包，内含针对特定任务的流程、规范与模板。在 Claude Code、Cursor 等环境中配置相应 Skill 后，在对话中直接描述需求（如目标会议、repo 路径、要写的章节），即可触发对应流程，无需记忆复杂 prompt
 
 ## Skills 的配置
+
+> 🆕 本仓库 Part I 的每个 Prompt 均已打包为独立 skill（见 `skills/` 目录），可用 `npx skills add <source>` 安装（见文首「🚀 安装为 Agent Skills」）。下方介绍的是如何配置和使用各类 agent skills 生态。
 
 下文的演示基于 **OpenSkills** 生态：它提供一套**通用的 Skills 加载/管理方式**，让 Cursor 等 AI coding agent 可以读取并使用以 `SKILL.md` 为核心的技能包。参考链接： [Cursor Agent Skills](https://cursor.com/docs/context/skills)、[openskills](https://github.com/numman-ali/openskills)
 
